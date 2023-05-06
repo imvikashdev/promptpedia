@@ -1,12 +1,15 @@
 import Nav from '@components/Nav';
 import '@styles/globals.css';
+import type { Metadata } from 'next';
 import { AppProps } from 'next/app';
 import { PropsWithChildren } from 'react';
 
-export const metaData = {
-  title: 'Promptopia',
-  description: 'Promptopia is a tool to create and share prompts',
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Promptopia',
+    description: 'Promptopia is a tool to create and share prompts',
+  };
+}
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
