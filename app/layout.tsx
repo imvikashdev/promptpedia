@@ -1,4 +1,5 @@
 import Nav from '@components/Nav';
+import Provider from '@components/Provider';
 import '@styles/globals.css';
 import type { Metadata } from 'next';
 import { AppProps } from 'next/app';
@@ -16,13 +17,15 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     <html lang="en">
       <head></head>
       <body>
-        <div className="main">
-          <div className="gradient" />
-        </div>
-        <main className="app">
-          <Nav />
-          {children}
-        </main>
+        <Provider>
+          <div className="main">
+            <div className="gradient" />
+          </div>
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
   );
