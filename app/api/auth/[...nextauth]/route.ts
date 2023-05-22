@@ -2,7 +2,7 @@ import User from '@models/user';
 import { connectToDatabase } from '@utils/database';
 import NextAuth, { AuthOptions, SessionOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-console.log(process.env.GOOGLE_ID);
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
