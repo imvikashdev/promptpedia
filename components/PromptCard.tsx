@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 
 declare type PromptCardProps = {
   post: PromptDto;
-  handleTagClick: (tag: string) => void;
-  handleEdit: (id: string) => void;
-  handleDelete: (id: string) => void;
+  handleTagClick?: (tag: string) => void;
+  handleEdit?: (post: PromptDto) => void;
+  handleDelete?: (post: PromptDto) => void;
 };
 
 const PromptCard = ({
