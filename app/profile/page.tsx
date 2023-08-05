@@ -3,12 +3,34 @@ import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import Profile from '@components/Profile';
 import { PromptDto } from '@utils/Types';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
+  const router = useRouter();
   const [posts, setPosts] = useState<PromptDto[]>([]);
   const { data: session } = useSession();
-  const handleEdit = () => {};
-  const handleDelete = async () => {};
+  const handleEdit = (post: PromptDto) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
+
+  const handleDelete = async (post: PromptDto) => {
+    const hasConfirmed = confirm(
+      'Are you sure you want to delete this prompt?',
+    );
+
+    if (hasConfirmed) {
+      try {
+        await fetch(`/api/prompt/${post._id.toString()}`, {
+          method: 'Delete',
+        });
+
+        const filteredPost = posts.filter((p) => p._id !== post._id);
+        setPosts(filteredPost);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
